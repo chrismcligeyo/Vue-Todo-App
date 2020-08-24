@@ -68,6 +68,21 @@
         margin: 0 auto;
     }
 
+    .btn {
+        display: inline-block;
+        background: #41B883;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+
+        &:hover{
+            background: #354A21;
+            color: #fff;
+        }
+    }
+
     .logo {
         display: block;
         margin: 0 auto;

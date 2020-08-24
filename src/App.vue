@@ -1,28 +1,77 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <div class="container">
+            <Header></Header>
+            <img alt="Vue logo" class="logo" src="./assets/logo.png">
+            <TodosList :todos="todos"></TodosList>
+        </div>
+
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import Header from "./components/Header";
+    import TodosList from "./components/TodosList";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+    export default {
+        name: 'App',
+
+        data() {
+          return{
+            todos: [
+              {
+                id: 1,
+                title: 'Walk the dog',
+                completed: true
+              },
+              {
+                id: 2,
+                title: 'Go for a Run',
+                completed: false
+              },
+              {
+                id: 3,
+                title: 'Start Programming Vue To Do App',
+                completed: false
+              }
+            ]
+          }
+
+        },
+      components: {
+        Header,
+        TodosList,
+      },
+
+      methods: {
+
+      },
+
+
+    }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        display: block;
+        margin: 0 auto;
+        width: 10%;
+
+    }
 </style>

@@ -1,12 +1,12 @@
 <template>
     <div class="todo-list">
-        <form action="" class="todo-list-input">
-            <input type="text" v-model="title" placeholder="Enter Todo Item" class="todo-list-inputt">
+        <form action="" class="todo-list-input" @submit.prevent="addTodo">
+            <input type="text" v-model="title" placeholder="Enter Todo Item" class="todo-list-inputt" @keyup.enter="addTodo">
             <input type="submit" value="Create Todo" class="btn">
         </form>
 
         <div v-for="todo in todos" :key="todo.id">
-            <SingleTodo :todo="todo"/>
+            <SingleTodo :todo="todo" @del-todo="$emit('del-todo',todo.id)"/>
 
         </div>
 
@@ -33,8 +33,20 @@
                        completed: false
                    }*/
 
+                // incrementToDoId: 4,
             }
         },
+
+        methods:{
+            // addTodo(){
+            //     this.todos.push({
+            //         id: this.incrementToDoId,
+            //         title: this.title,
+            //         completed: false
+            //     });
+            // },
+
+        }
 
     }
 </script>

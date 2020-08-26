@@ -1,12 +1,12 @@
 <template>
     <div>
 
-        <div class="single-todo-item">
-           <p>
-               <input type="checkbox">
-               {{todo.title}}</p>
-            <div class="del-single-todo-item">
-               &times; <!-- x symbol html entity-->
+        <div class="single-todo-item" :class="{'is-item-complete':todo.completed}">
+            <p>
+                <input type="checkbox" @change="markComplete">
+                {{todo.title}}</p>
+            <div class="del-single-todo-item" @click="removeTodo">
+                &times; <!-- x symbol html entity-->
             </div>
         </div>
 
@@ -19,17 +19,26 @@
         data() {
             return {
 
-             /*   todo: {
-                    id: 1,
-                    title: 'Walk the dog',
-                    completed: false
-                }*/
+                /*   todo: {
+                       id: 1,
+                       title: 'Walk the dog',
+                       completed: false
+                   }*/
 
             }
         },
         props: ["todo"],
         components: {},
-        methods: {}
+        methods: {
+            markComplete() {
+                this.todo.completed = !this.todo.completed;
+            },
+            removeTodo(){
+                this.$emit('del-todo', this.todo.id)
+
+            }
+
+        }
 
     }
 </script>
@@ -56,7 +65,7 @@
         border-radius: 50%;
 
 
-        &:hover{
+        &:hover {
             background: #41B883;
             color: #ff0000;
 

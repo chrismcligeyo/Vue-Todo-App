@@ -2,15 +2,15 @@
     <div id="app">
         <div class="container">
             <Header></Header>
-            <img alt="Vue logo" class="logo" src="./assets/logo.png">
-            <TodosList :todos="todos"></TodosList>
+            <img alt="Vue logo" class="logo" src="./assets/imgs/logo.png">
+            <TodosList :todos="todos"  @del-todo="removeTodo"></TodosList>
         </div>
 
     </div>
 </template>
 
 <script>
-    import Header from "./components/Header";
+    import Header from "./components/layout/Header";
     import TodosList from "./components/TodosList";
 
 
@@ -19,6 +19,7 @@
 
         data() {
           return{
+              incrementToDoId: 4,
             todos: [
               {
                 id: 1,
@@ -45,7 +46,20 @@
       },
 
       methods: {
+        removeTodo(id){ //can add id coz sent as payload from singleTodo to todolist
+            // this.todos.splice(id,1); //removes all except item at index 0 when deleted
+            // or
+            this.todos =  this.todos.filter(todo => todo.id !== id); //removes all items when delete icon clicked
 
+        },
+
+          addTodo(){
+              this.todos.push({
+                  id: this.incrementToDoId,
+                  title: this.title,
+                  completed: false
+              });
+          },
       },
 
 

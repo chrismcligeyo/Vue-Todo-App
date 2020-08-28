@@ -4,9 +4,10 @@
         <div :class="{'is-item-complete':todo.completed}" class="single-todo-item">
 <!--            <div>-->
                 <div class="single-todo-item-left">
+                    <input class="" @change="markComplete" type="checkbox">
                     <div v-if="!todo.editing
 " @dblclick="editTodo" class="single-todo-item-label"><!--edit input below will show when you double-click-->
-                        <input class="" @change="markComplete" type="checkbox">
+<!--                        <input class="" @change="markComplete" type="checkbox">-->
                         {{todo.title}}
                    </div> <!-- if true, that is !todo.editing show input and title(div with class label) else  if false show input beow. input with v mdel below.   In short its true, so will show div with title and checkbox-->
                     <input v-else type="text" class="single-todo-item-edit" v-model="todo.title"> <!-- if not true, that is if false(todo.editing) show this input-->
@@ -96,6 +97,7 @@
     }
     .single-todo-item-left{
         display: flex;
+        align-items: center;
       }
 
     .single-todo-item-label{

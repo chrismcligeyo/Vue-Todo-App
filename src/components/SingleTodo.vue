@@ -1,12 +1,14 @@
 <template>
     <div>
 
-        <div :class="{'is-item-complete':todo.completed}" class="single-todo-item">
+        <div  class="single-todo-item">
 <!--            <div>-->
                 <div class="single-todo-item-left">
-                    <input class="" @change="markComplete" type="checkbox">
+<!--                    <input class="" @change="markComplete" type="checkbox">-->
+                    <!--can use above or below. below puts line through on item when checkbox clicked-->
+                    <input v-model="todo.completed" type="checkbox">
                     <div v-if="!todo.editing
-" @dblclick="editTodo" class="single-todo-item-label"><!--edit input below will show when you double-click-->
+" @dblclick="editTodo" class="single-todo-item-label" :class="{'is-item-complete':todo.completed}"><!--edit input below will show when you double-click-->
 <!--                        <input class="" @change="markComplete" type="checkbox">-->
                         {{todo.title}}
                    </div> <!-- if true, that is !todo.editing show input and title(div with class label) else  if false show input beow. input with v mdel below.   In short its true, so will show div with title and checkbox-->
@@ -41,9 +43,9 @@
         props: ["todo"],
         components: {},
         methods: {
-            markComplete() {
-                this.todo.completed = !this.todo.completed;
-            },
+            // markComplete() {
+            //     this.todo.completed = !this.todo.completed;
+            // },
             removeTodo() {
                 this.$emit('del-todo', this.todo.id)
 
@@ -80,21 +82,20 @@
         cursor: pointer;
         border-radius: 50%;
 
-
-
-
         &:hover {
             background: #41B883;
             color: #ff0000;
 
         }
 
-
+        .del-single-todo-item-x{
+            padding:15px;
+        }
 
     }
-    .del-single-todo-item-x{
-        padding:15px;
-    }
+    /*.del-single-todo-item-x{*/
+    /*    padding:15px;*/
+    /*}*/
     .single-todo-item-left{
         display: flex;
         align-items: center;

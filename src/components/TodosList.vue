@@ -1,7 +1,8 @@
 <template>
     <div class="todo-list">
         <form action="" class="todo-list-input" @submit.prevent="addTodo">
-            <input type="text" v-model="title" placeholder="Enter Todo Item" class="todo-list-inputt" @keyup.enter="addTodo">
+            <input type="text" v-model="title" placeholder="Enter Todo Item" class="todo-list-inputt"
+                   @keyup.enter="addTodo">
             <input type="submit" value="Create Todo" class="btn">
         </form>
 
@@ -33,18 +34,34 @@
                        completed: false
                    }*/
 
-                // incrementToDoId: 4,
+                incrementToDoId: 4,
             }
         },
 
-        methods:{
-            // addTodo(){
-            //     this.todos.push({
-            //         id: this.incrementToDoId,
-            //         title: this.title,
-            //         completed: false
-            //     });
-            // },
+        methods: {
+            incrementId() {
+                this.incrementToDoId++;
+            },
+            addTodo() {
+                //ensure no emty todos added
+                if(this.title === ''){
+                    return;
+                }
+                //above can also be. ensure no emty todos added
+                // if(this.title.trim().length === 0){
+                //     return;
+                // }
+                // eslint-disable-next-line no-unused-vars
+                this.incrementId();
+                const newTodo = {
+                    id: this.incrementToDoId,
+                    title: this.title,
+                    completed: false
+                }
+                //send to parent
+                this.$emit('add-todo', newTodo);
+                this.title = '';
+            },
 
         }
 
@@ -53,30 +70,26 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    form{
+    form {
         display: flex;
         justify-content: space-between;
 
-        input[type="text"]{
+        input[type="text"] {
             flex: 10;
             padding: 5px;
         }
 
-        input[type="submit"]{
+        input[type="submit"] {
             flex: 2;
         }
 
 
-
-
     }
 
-    .todo-list-inputt{
+    .todo-list-inputt {
 
 
-
-
-        &:focus{
+        &:focus {
             outline: chartreuse;
         }
     }

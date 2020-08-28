@@ -7,7 +7,7 @@
         </form>
 
         <div v-for="todo in todos" :key="todo.id">
-            <SingleTodo :todo="todo" @del-todo="$emit('del-todo',todo.id)"/>
+            <SingleTodo :todo="todo" @del-todo="$emit('del-todo',todo.id)" @edit-todo="$emit('edit-todo',todo.id)"/>
 
         </div>
 
@@ -56,12 +56,14 @@
                 const newTodo = {
                     id: this.incrementToDoId,
                     title: this.title,
-                    completed: false
+                    completed: false,
+                    editing:false
                 }
                 //send to parent
                 this.$emit('add-todo', newTodo);
                 this.title = '';
             },
+
 
         }
 

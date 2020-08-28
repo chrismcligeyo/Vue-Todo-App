@@ -3,7 +3,7 @@
         <div class="container">
             <Header></Header>
             <img alt="Vue logo" class="logo" src="./assets/imgs/logo.png">
-            <TodosList :todos="todos"  @del-todo="removeTodo"></TodosList>
+            <TodosList :todos="todos"  @del-todo="removeTodo" @add-todo="addTodo"></TodosList>
         </div>
 
     </div>
@@ -53,12 +53,8 @@
 
         },
 
-          addTodo(){
-              this.todos.push({
-                  id: this.incrementToDoId,
-                  title: this.title,
-                  completed: false
-              });
+          addTodo(newTodo){
+            this.todos = [...this.todos, newTodo];
           },
       },
 
